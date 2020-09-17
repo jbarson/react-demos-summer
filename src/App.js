@@ -1,24 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+// import logo from './Vue.js_Logo_2.svg';
 import './App.css';
 
+class NewButton extends React.Component {
+  // constructor() {
+  //   super()
+  //   this.clickHandler = this.clickHandler.bind(this)
+  // }
+  clickHandler = (event) => {console.log(this.props.motorGlider, event.target)}
+  render() {
+    return (
+      <>
+        <button onClick={this.clickHandler}>Click</button>
+        <p>{this.props.motorGlider}</p>
+      </>
+    )
+  }
+}
+
+function ListItem({item, index}) {
+  return <li key={index}>{item}</li>
+}
+
 function App() {
+  const listOfStuff = [1,2,3,4,5];
+  const listItem = (item, index) => <li key={index}>{item}</li>
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {
+          listOfStuff.map((item, index) => {
+            // return <li key={index}>{item}</li>
+            // return listItem(item, index)
+            return <ListItem item={item} index={index} />
+          })
+        }
+      </ul>
+      <NewButton motorGlider="Motor Glider" />
+      <h2>Hello Chelsea</h2>
     </div>
   );
 }
