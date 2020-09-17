@@ -15,18 +15,56 @@ const Teachers = ({teachers}) => {
   )
 }
 
-const NewComponent = () => {
-  const handler = () => console.log('this is in the parent')
-  return (<NewButton clickHandler={handler}/>)
+class NewComponent extends React.Component {
+  // constructor(props){
+  //   super(props)
+  //     this.state ={
+  //       message: "this is a message in the state"
+  //     }
+  //   }
+    state = {
+      message: "this is a message in the state",
+      messageToggle: 'old',
+      anotherMessage: "This is another Message!",
+      displayColor: "Red",
+    }
+    handler = () => {
+      // console.log('this is in the parent');
+      let newMessage ="I have changed the message.";
+      let oldMessage = "this is a message in the state";
+      if(this.state.messageToggle === "new") {
+        this.setState({ message: oldMessage, messageToggle: 'old' });
+      }else{
+        this.setState({ message: newMessage, messageToggle: 'new' });
+      }
+    }
+    render() {
+      return (
+        <>
+          <p>{this.state.message}</p>
+          <button onClick={this.handler}>Parent Button</button>
+          <NewButton clickHandler={this.handler} />
+          <p>{this.state.anotherMessage}</p>
+          <ChildrenAreFun childMessage={this.state.message}/>
+          <h3>{this.state.displayColor}</h3>
+        </>
+      )
+    }
 }
 
 const NewButton = ({clickHandler}) => {
-  const anotherHandler = () => console.log('in the child!')
+  // const anotherHandler = () => console.log('in the child!')
   return (
     <>
       <button onClick={clickHandler}>click me in the child!</button>
-      <button onClick={anotherHandler}>click me in the child too!</button>
+      {/* <button onClick={anotherHandler}>click me in the child too!</button> */}
     </>
+  )
+}
+
+const ChildrenAreFun = ({childMessage}) => {
+  return (
+  <h2>{childMessage}</h2>
   )
 }
 
@@ -79,11 +117,11 @@ function App() {
   }
   return (
     <div className="App">
-      <Header></Header>
+      {/* <Header></Header>
       <Name firstName={educator.firstName} lastName={educator.lastName}/>
-      <Name firstName={anotherName.firstName} lastName={anotherName.lastName}/>
+      <Name firstName={anotherName.firstName} lastName={anotherName.lastName}/> */}
       <NewComponent />
-      <Teachers teachers={teachers}/>
+      {/* <Teachers teachers={teachers}/> */}
     </div>
   );
 }
