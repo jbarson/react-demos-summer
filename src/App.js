@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AddTodo from './AddTodo'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    todos: [
+      {
+        id: 9,
+        content: "finish this lab",
+        done: false
+      },
+      {
+        id: 10,
+        content: "finish the next lab",
+        done: false
+      },
+      {
+        id: 11,
+        content: "send Chelsea your paypal info",
+        done: false
+      }
+    ]
+  }
+  addTodo = (newTodo) => {
+    console.log(newTodo)
+    this.setState({todos: [...this.state.todos, newTodo]})
+  }
+  render() {
+    return (
+      <div className="App">
+        <AddTodo addTodo={this.addTodo} />
+        <ul>
+          {
+            
+            this.state.todos.map((todo) => {
+            return <li key={todo.id}>{todo.content}</li>
+             })
+          }
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;
