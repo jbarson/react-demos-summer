@@ -1,0 +1,19 @@
+.task-form {
+  display: flex;
+  &__input {
+    font-size: 1.25rem;
+    padding: 5px;
+    border: 1px solid #48a999;
+    border-radius: 4px;
+    &::placeholder {
+      color: #48a999;
+    }
+  }
+  &__submit {
+    margin-left: 0.5rem;
+    border-radius: 4px;
+    background-color: #00796b;
+    color: #fff;
+    font-size: 1.25rem;
+  }
+}
