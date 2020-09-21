@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import HomePage from './components/Home'
+import AboutPage from './components/About'
+import EventPage from './components/Event';
+import NotFound from './components/NotFound';
 import './App.css';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/about" component= {AboutPage} />
+            <Route path="/event" component={EventPage} />
+            <Redirect from="/round-table-2020" to="/event" />
+            <Route component={NotFound} />
+          </Switch>
+      </BrowserRouter>
     </div>
   );
 }
