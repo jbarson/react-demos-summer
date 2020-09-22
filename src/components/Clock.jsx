@@ -20,6 +20,7 @@ class Clock extends Component {
   shouldComponentUpdate(_nextProps, nextState) {
     console.log('Should Clock Update')
     return nextState
+    //Math.random() > 0.5
   }
 
   componentDidUpdate(_prevProps, prevState) {
